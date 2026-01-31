@@ -1,13 +1,26 @@
-import StatusScreen from "@/components/StatusScreen";
-import { router } from "expo-router";
+import { View, Text, StyleSheet } from "react-native";
 
-export default function ServerErrorScreen() {
+export default function ServerErrorPage() {
   return (
-    <StatusScreen
-      title="시스템 오류가 발생"
-      description="일시적인 오류가 발생\n잠시 후 다시 시도하기"
-      buttonText="다시 시도하기"
-      onPress={() => router.replace("/")}
-    />
+    <View style={styles.container}>
+      <Text style={styles.title}>서버 오류가 발생했어요</Text>
+      <Text style={styles.desc}>잠시 후 다시 시도해주세요</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  desc: {
+    color: "#666",
+    marginTop: 8,
+  },
+});
