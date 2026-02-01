@@ -1,19 +1,21 @@
-const express = require("express");
-const cors = require("cors");
-
-const introRoute = require("./routes/intro.route");
+import express from "express";
+import cors from "cors";
+import { connectDB } from "./utils/db.js";
+import onboardingRouter from "./routes/onboarding.route.js";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
+connectDB();
+
+app.use("/api/onboarding", onboardingRouter);
+
 app.get("/", (req, res) => {
-  res.send("🚀 Landing System Backend is running");
+  res.send("Server running");
 });
 
-app.use("/api", introRoute);
-
-const PORT = 4000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+app.listen(4000, () => {
+  console.log("Server running on port 4000");
 });
